@@ -1,0 +1,15 @@
+[ {
+  "id" : 1,
+  "screening" : {
+    "id" : 1,
+    "movie" : {
+      "id" : 3,
+      "title" : "test",
+      "durationMinutes" : 333
+    },
+    "room" : {
+      "id" : 2,
+      "name" : "VIP",
+      "seats" : 30
+    },
+    "dateTime"

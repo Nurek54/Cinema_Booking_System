@@ -1,0 +1,13 @@
+[ {
+  "id" : 1,
+  "movie" : {
+    "id" : 4,
+    "title" : null,
+    "durationMinutes" : 0
+  },
+  "room" : {
+    "id" : 1,
+    "name" : null,
+    "seats" : 0
+  },
+  "dateTime"

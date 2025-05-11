@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>System rezerwacji kinowych</title>
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+<header class="toolbar" aria-label="Główna nawigacja">
+  <button id="btn-films"      aria-label="Filmy">🎬 Filmy</button>
+  <button id="btn-screenings" aria-label="Seanse">📅 Seanse</button>
+  <button id="btn-reserve"    aria-label="Rezerwuj">🎟️ Rezerwuj</button>
+  <button id="btn-admin"      aria-label="Panel administracyjny">🛠️ Admin</button>
+</header>
+
+<main>
+  <!-- ========== FILMY ========== -->
+  <section id="movies-section">
+    <h1>Filmy</h1>
+    <div id="movies" class="list-wrapper"></div>
+
+    <h2>Dodaj film</h2>
+    <form id="movie-form" class="form-inline">
+      <input id="title" placeholder="Tytuł" required />
+      <input id="duration" type="number" placeholder="Czas (min)" required />
+      <button>Dodaj</button>
+    </form>
+    <div id="add-status" class="status-box" role="status" aria-live="polite"></div>
+  </section>
+
+  <!-- ========== SEANSE ========== -->
+  <section id="screenings-section" hidden>
+    <h1>Seanse</h1>
+    <div id="screenings" class="list-wrapper"></div>
+
+    <h2>Stwórz seans</h2>
+    <form id="screening-form" class="form-inline">
+      <select id="sc-movie" required aria-label="Film"></select>
+      <select id="sc-room"  required aria-label="Sala"></select>
+      <input  id="sc-date"  type="datetime-local" required aria-label="Data i godzina" />
+      <button>Utwórz</button>
+    </form>
+    <div id="sc-status" class="status-box" role="status" aria-live="polite"></div>
+  </section>
+
+  <!-- ========== REZERWACJA ========== -->
+  <section id="reserve-section" hidden>
+    <h1 id="reserve-heading">Rezerwacja</h1>
+
+    <select id="res-screen" aria-label="Wybierz seans"></select>
+
+    <div id="seat-grid" class="grid-wrapper" aria-label="Siatka miejsc"></div>
+
+    <div id="legend" class="legend">
+      <span class="seat free"></span> wolne
+      <span class="seat taken"></span> zajęte
+      <span class="seat selected"></span> wybrane
+    </div>
+
+    <div class="action-bar">
+      <button id="btn-book" disabled>Zarezerwuj</button>
+      <button id="btn-cancel" class="secondary">Anuluj</button>
+    </div>
+    <div id="res-status" class="status-box" role="status" aria-live="polite"></div>
+  </section>
+
+  <!-- ========== PANEL ADMINA ========== -->
+  <section id="admin-section" hidden>
+    <h1>Panel administracyjny</h1>
+
+    <nav class="subnav">
+      <button id="tab-reservations" class="tab active">Rezerwacje</button>
+      <button id="tab-logs"         class="tab">Logi</button>
+    </nav>
+
+    <!-- Rezerwacje -->
+    <div id="admin-reservations" class="tab-content"></div>
+
+    <!-- Logi (placeholder) -->
+    <div id="admin-logs" class="tab-content" hidden>
+      <p>Logi serwera będą dostępne w kolejnej wersji.</p>
+    </div>
+  </section>
+</main>
+
+<footer><p>&copy; 2025 KinoApp</p></footer>
+<script type="module" src="/src/js/app.js"></script>
+</body>
+</html>
