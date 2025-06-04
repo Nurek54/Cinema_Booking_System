@@ -1,8 +1,4 @@
 [ {
-  "id" : 2,
-  "title" : "gfdhfzd",
-  "durationMinutes" : 0
-}, {
   "id" : 3,
   "title" : "test",
   "durationMinutes" : 333
@@ -22,4 +18,8 @@
   "id" : 7,
   "title" : "aa",
   "durationMinutes" : 60
+}, {
+  "id" : 8,
+  "title" : "zzz",
+  "durationMinutes" : 55
 } ]

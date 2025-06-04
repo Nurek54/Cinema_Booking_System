@@ -78,14 +78,28 @@
     <!-- Rezerwacje -->
     <div id="admin-reservations" class="tab-content"></div>
 
-    <!-- Logi (placeholder) -->
+    <!-- Logi -->
     <div id="admin-logs" class="tab-content" hidden>
-      <p>Logi serwera będą dostępne w kolejnej wersji.</p>
+      <pre id="logs-pre" style="white-space:pre-wrap"></pre>
     </div>
+  </section>
+
+  <!-- ========== LOGOWANIE ADMINA ========== -->
+  <section id="admin-login-section" hidden>
+    <h2>Zaloguj się jako administrator</h2>
+    <form id="admin-login-form" class="form-inline">
+      <input id="admin-user" placeholder="Login" required />
+      <input id="admin-pass" type="password" placeholder="Hasło" required />
+      <button>Zaloguj</button>
+    </form>
+    <div id="admin-login-status" class="status-box"></div>
   </section>
 </main>
 
-<footer><p>&copy; 2025 KinoApp</p></footer>
+<footer>
+  <p>&copy; 2025 KinoApp</p>
+</footer>
+
 <script type="module" src="/src/js/app.js"></script>
 </body>
 </html>

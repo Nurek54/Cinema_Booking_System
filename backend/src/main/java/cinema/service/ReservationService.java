@@ -13,73 +13,77 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final ScreeningService screeningService;
+    private final LoggingService loggingService;
 
     public ReservationService(ReservationRepository reservationRepository,
-                              ScreeningService screeningService) {
+                              ScreeningService screeningService,
+                              LoggingService loggingService) {
         this.reservationRepository = reservationRepository;
-        this.screeningService      = screeningService;
+        this.screeningService = screeningService;
+        this.loggingService = loggingService;
     }
 
-    /* ------------------------------------------------- CREATE */
     public Reservation createReservation(Long screeningId, List<Integer> seatNumbers) {
-
         Screening screening = screeningService.getById(screeningId)
                 .orElseThrow(() -> new NoSuchElementException("Seans nie istnieje."));
 
-        // 1) sanity-check listy (brak duplikatów)
-        Set<Integer> duplicateCheck = new HashSet<>();
-        for (Integer s : seatNumbers) {
-            if (!duplicateCheck.add(s))
-                throw new IllegalArgumentException("Duplikat miejsca: " + s);
-        }
-
-        // 2) zakres i zajętość
         List<Integer> takenSeats = getTakenSeats(screeningId);
         for (Integer seat : seatNumbers) {
-            if (seat < 1 || seat > screening.getRoom().getSeats())
+            if (seat < 1 || seat > screening.getRoom().getSeats()) {
                 throw new IllegalArgumentException("Nieprawidłowy numer miejsca: " + seat);
-            if (takenSeats.contains(seat))
+            }
+            if (takenSeats.contains(seat)) {
                 throw new IllegalStateException("Miejsce " + seat + " jest już zajęte.");
+            }
         }
 
-        // 3) zapis (posortowana lista dla porządku w pliku)
-        List<Integer> sorted = seatNumbers.stream().sorted().toList();
-        Reservation res = new Reservation(null, screening, sorted);
-        return reservationRepository.save(res);
+        Reservation reservation = new Reservation();
+        reservation.setScreening(screening);
+        reservation.setSeats(seatNumbers);
+
+        Reservation saved = reservationRepository.save(reservation);
+        loggingService.log("Dodano rezerwację ID: " + saved.getId() +
+                ", Seans: " + screeningId + ", Miejsca: " + seatNumbers);
+        return saved;
     }
 
-    /* ------------------------------------------------- READ helpers */
     public List<Integer> getTakenSeats(Long screeningId) {
         return reservationRepository.findAll().stream()
                 .filter(r -> r.getScreening().getId().equals(screeningId))
                 .flatMap(r -> r.getSeats().stream())
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getAvailableSeats(Long screeningId) {
-        Screening s = screeningService.getById(screeningId)
+        Screening screening = screeningService.getById(screeningId)
                 .orElseThrow(() -> new NoSuchElementException("Seans nie istnieje."));
-        int total = s.getRoom().getSeats();
+
+        int totalSeats = screening.getRoom().getSeats();
         Set<Integer> taken = new HashSet<>(getTakenSeats(screeningId));
 
-        return java.util.stream.IntStream.rangeClosed(1, total)
-                .filter(n -> !taken.contains(n))
-                .boxed()
-                .toList();
+        return new ArrayList<>(
+                java.util.stream.IntStream.rangeClosed(1, totalSeats)
+                        .filter(seat -> !taken.contains(seat))
+                        .boxed()
+                        .collect(Collectors.toList())
+        );
     }
 
-    public List<Reservation> getReservationsByScreeningId(Long id) {
+    public List<Reservation> getReservationsByScreeningId(Long screeningId) {
         return reservationRepository.findAll().stream()
-                .filter(r -> r.getScreening().getId().equals(id))
-                .toList();
+                .filter(r -> r.getScreening().getId().equals(screeningId))
+                .collect(Collectors.toList());
     }
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
     }
 
-    /* ------------------------------------------------- DELETE */
-    public boolean deleteReservation(Long id) {
-        return reservationRepository.deleteById(id);
+    public boolean deleteById(Long id) {
+        boolean ok = reservationRepository.deleteById(id);
+        if (ok) {
+            loggingService.log("Usunięto rezerwację ID: " + id);
+        }
+        return ok;
     }
 }

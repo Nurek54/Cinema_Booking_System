@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ReservationRepository {
 
@@ -23,42 +24,50 @@ public class ReservationRepository {
     }
 
     // -------------------- API --------------------
-    public List<Reservation> findAll()            { return new ArrayList<>(reservations); }
+    public List<Reservation> findAll() {
+        return new ArrayList<>(reservations);
+    }
 
-    public Reservation save(Reservation r){
+    public Reservation save(Reservation r) {
         r.setId(nextId++);
         reservations.add(r);
         saveToFile();
         return r;
     }
 
-    // -------------------- I/O --------------------
-    private void load(){
-        if(!file.exists()) return;
-        try{
-            reservations.addAll(mapper.readValue(file, new TypeReference<>(){}));
-        }catch(IOException e){
-            System.err.println("reservations.json uszkodzony → "+e.getMessage());
-            File bad = new File("reservations_corrupt_"+System.currentTimeMillis()+".json");
-            if(file.renameTo(bad)) System.err.println("Kopia: "+bad.getName());
-        }
-    }
-    private void saveToFile(){
-        try{
-            File tmp = new File(file.getPath()+".tmp");
-            mapper.writerWithDefaultPrettyPrinter().writeValue(tmp, reservations);
-            if(!tmp.renameTo(file)){
-                throw new IOException("Nie mogę podmienić pliku "+file.getName());
-            }
-        }catch(IOException e){
-            System.err.println("Błąd zapisu rezerwacji: "+e.getMessage());
-        }
-    }
-
-    public boolean deleteById(Long id){
+    public boolean deleteById(Long id) {
         boolean removed = reservations.removeIf(r -> r.getId().equals(id));
-        if(removed) saveToFile();
+        if (removed) saveToFile();
         return removed;
     }
 
+    public Optional<Reservation> findById(Long id) {
+        return reservations.stream()
+                .filter(r -> r.getId().equals(id))
+                .findFirst();
+    }
+
+    // -------------------- I/O --------------------
+    private void load() {
+        if (!file.exists()) return;
+        try {
+            reservations.addAll(mapper.readValue(file, new TypeReference<>() {}));
+        } catch (IOException e) {
+            System.err.println("reservations.json uszkodzony → " + e.getMessage());
+            File bad = new File("reservations_corrupt_" + System.currentTimeMillis() + ".json");
+            if (file.renameTo(bad)) System.err.println("Kopia: " + bad.getName());
+        }
+    }
+
+    private void saveToFile() {
+        try {
+            File tmp = new File(file.getPath() + ".tmp");
+            mapper.writerWithDefaultPrettyPrinter().writeValue(tmp, reservations);
+            if (!tmp.renameTo(file)) {
+                throw new IOException("Nie mogę podmienić pliku " + file.getName());
+            }
+        } catch (IOException e) {
+            System.err.println("Błąd zapisu rezerwacji: " + e.getMessage());
+        }
+    }
 }
