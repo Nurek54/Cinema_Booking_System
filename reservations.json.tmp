@@ -1,5 +1,5 @@
 [ {
-  "id" : 2,
+  "id" : 1,
   "screening" : {
     "id" : 1,
     "movie" : {
@@ -14,5 +14,22 @@
     },
     "dateTime" : [ 2025, 5, 9, 20, 15 ]
   },
-  "seats" : [ 13, 14, 24, 23, 32 ]
+  "seats" : [ 1 ]
+}, {
+  "id" : 2,
+  "screening" : {
+    "id" : 2,
+    "movie" : {
+      "id" : 9,
+      "title" : "abcd",
+      "durationMinutes" : 90
+    },
+    "room" : {
+      "id" : 2,
+      "name" : "VIP",
+      "seats" : 30
+    },
+    "dateTime" : [ 2025, 6, 11, 20, 55 ]
+  },
+  "seats" : [ 2, 13 ]
 } ]

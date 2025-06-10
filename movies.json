@@ -1,25 +1,9 @@
 [ {
-  "id" : 3,
-  "title" : "test",
-  "durationMinutes" : 333
+  "id" : 9,
+  "title" : "abcd",
+  "durationMinutes" : 90
 }, {
-  "id" : 4,
-  "title" : "zzz",
-  "durationMinutes" : 1111
-}, {
-  "id" : 5,
-  "title" : "aaa",
-  "durationMinutes" : 60
-}, {
-  "id" : 6,
-  "title" : "ss",
-  "durationMinutes" : 111
-}, {
-  "id" : 7,
-  "title" : "aa",
-  "durationMinutes" : 60
-}, {
-  "id" : 8,
-  "title" : "zzz",
-  "durationMinutes" : 55
+  "id" : 10,
+  "title" : "xyz",
+  "durationMinutes" : 120
 } ]
