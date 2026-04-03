@@ -195,7 +195,7 @@ On first launch the application creates:
 
 ## Acknowledgments
 
-- Partially built using **vibe coding** - an AI‑assisted development approach where parts of the codebase were generated and iterated on through natural‑language conversation with [Claude](https://claude.ai)
+- Partially built using **vibe coding** - an AI‑assisted development approach where parts of the codebase were generated and iterated on through natural‑language conversation.
 - Fonts: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display), [DM Sans](https://fonts.google.com/specimen/DM+Sans), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
 
 ## License
