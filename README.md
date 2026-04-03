@@ -21,7 +21,7 @@
 <br />
 
 <p align="center">
-  <img src="preview.png" alt="Lumière Cinema — Hero" width="720" />
+  <img src="preview.png" alt="Lumière Cinema - Hero" width="720" />
 </p>
 
 ---
@@ -30,7 +30,7 @@
 
 **Lumière Cinema** is a cinema seat reservation system built as a full-stack web application. It features a Spring Boot REST API backend with JSON file-based persistence and a vanilla JavaScript frontend served via Vite, wrapped in a luxury dark cinematic theme with gold accents, film‑strip decorations and smooth animations.
 
-The project name is inspired by the **Lumière brothers** — pioneers of cinema — and the visual aesthetic draws inspiration from the game **[Expedition 33](https://expedition33.com/)**, blending cinematic atmosphere with modern UI design.
+The project name is inspired by the **Lumière brothers** - pioneers of cinema - and the visual aesthetic draws inspiration from the game **[Expedition 33](https://expedition33.com/)**, blending cinematic atmosphere with modern UI design.
 
 ## User Flow
 
@@ -38,21 +38,21 @@ The project name is inspired by the **Lumière brothers** — pioneers of cinema
 Repertoire  →  Pick a movie  →  See screenings  →  Select seats  →  Booking confirmation
 ```
 
-The customer never sees admin forms — only the movie grid, screening list and seat picker. All management happens behind a separate login.
+The customer never sees admin forms - only the movie grid, screening list and seat picker. All management happens behind a separate login.
 
 ## Features
 
-- **Cinematic landing page** — full‑screen hero with animated spotlights, film‑strip decorations, live stats and a scroll indicator
-- **Movie poster grid** — cards with unique gradient backgrounds, golden glow on hover and staggered entrance animations
-- **Screening browser** — pick a movie, see all upcoming showtimes sorted by date with room info
-- **Interactive seat reservation** — visual seat grid with screen glow, click‑to‑select, real‑time availability and booking summary
-- **Booking confirmation** — receipt card with reservation number, film, room, date and seats
-- **Admin panel** (login required) — four tabs: Movies CRUD, Screenings CRUD, Reservations management, System logs
-- **Room conflict detection** — the backend prevents overlapping screenings (film duration + 15 min buffer)
-- **Seat validation** — checks for duplicates, out‑of‑range seats and double‑bookings
-- **Persistent storage** — all data saved to JSON files (`movies.json`, `screenings.json`, `reservations.json`)
-- **Responsive design** — works on desktop and mobile with hamburger navigation
-- **Toast notifications** — non‑intrusive feedback for all user actions
+- **Cinematic landing page** - full‑screen hero with animated spotlights, film‑strip decorations, live stats and a scroll indicator
+- **Movie poster grid** - cards with unique gradient backgrounds, golden glow on hover and staggered entrance animations
+- **Screening browser** - pick a movie, see all upcoming showtimes sorted by date with room info
+- **Interactive seat reservation** - visual seat grid with screen glow, click‑to‑select, real‑time availability and booking summary
+- **Booking confirmation** - receipt card with reservation number, film, room, date and seats
+- **Admin panel** (login required) - four tabs: Movies CRUD, Screenings CRUD, Reservations management, System logs
+- **Room conflict detection** - the backend prevents overlapping screenings (film duration + 15 min buffer)
+- **Seat validation** - checks for duplicates, out‑of‑range seats and double‑bookings
+- **Persistent storage** - all data saved to JSON files (`movies.json`, `screenings.json`, `reservations.json`)
+- **Responsive design** - works on desktop and mobile with hamburger navigation
+- **Toast notifications** - non‑intrusive feedback for all user actions
 
 ## Tech Stack
 
@@ -116,7 +116,7 @@ Cinema_Booking_System/
 
 - **Java 17** or newer
 - **Node.js** 18+ and npm
-- Maven is **not** required — the project includes Maven Wrapper
+- Maven is **not** required - the project includes Maven Wrapper
 
 ### Backend
 
@@ -181,7 +181,7 @@ Opens at `http://localhost:5178` with API requests proxied to the backend.
 |----------|----------|
 | `admin` | `admin` |
 
-> Authentication uses client‑side SHA‑256 hash verification. This is a demo project — do not use in production.
+> Authentication uses client‑side SHA‑256 hash verification. This is a demo project - do not use in production.
 
 ## Seeded Data
 
@@ -195,9 +195,9 @@ On first launch the application creates:
 
 ## Acknowledgments
 
-- Partially built using **vibe coding** — an AI‑assisted development approach where parts of the codebase were generated and iterated on through natural‑language conversation.
+- Partially built using **vibe coding** - an AI‑assisted development approach where parts of the codebase were generated and iterated on through natural‑language conversation.
 - Fonts: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display), [DM Sans](https://fonts.google.com/specimen/DM+Sans), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
 
 ## License
 
-This project is licensed under [CC BY-NC 4.0](LICENSE) — free for personal and academic use, **commercial use is not permitted**.
+This project is licensed under [CC BY-NC 4.0](LICENSE) - free for personal and academic use, **commercial use is not permitted**.
