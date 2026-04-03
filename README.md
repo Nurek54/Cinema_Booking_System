@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/Java-17+-orange?style=flat-square" alt="Java" />
   <img src="https://img.shields.io/badge/Spring_Boot-3.x-green?style=flat-square" alt="Spring Boot" />
   <img src="https://img.shields.io/badge/Vite-5.x-purple?style=flat-square" alt="Vite" />
-  <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/License-CC_BY--NC_4.0-blue?style=flat-square" alt="License" />
 </p>
 
 <br />
@@ -193,6 +193,11 @@ On first launch the application creates:
 | Movies | 8 | Oppenheimer, Dune: Part Two, Interstellar, The Batman, Spider‑Man: Across the Spider‑Verse, Gladiator II, Inception, Joker: Folie à Deux |
 | Screenings | 30 | 3–4 per movie, spread across 5 days in both rooms |
 
+## Acknowledgments
+
+- Partially built using **vibe coding** — an AI‑assisted development approach where parts of the codebase were generated and iterated on through natural‑language conversation with [Claude](https://claude.ai)
+- Fonts: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display), [DM Sans](https://fonts.google.com/specimen/DM+Sans), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
+
 ## License
 
-This project is available under the [MIT License](LICENSE).
+This project is licensed under [CC BY-NC 4.0](LICENSE) — free for personal and academic use, **commercial use is not permitted**.
