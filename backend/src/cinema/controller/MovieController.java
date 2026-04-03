@@ -19,9 +19,13 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-        Movie saved = movieService.addMovie(movie);
-        return ResponseEntity.ok(saved);
+    public ResponseEntity<?> addMovie(@RequestBody Movie movie) {
+        try {
+            Movie saved = movieService.addMovie(movie);
+            return ResponseEntity.ok(saved);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping
@@ -44,9 +48,13 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie updatedMovie) {
-        Optional<Movie> updated = movieService.updateMovie(id, updatedMovie);
-        return updated.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> updateMovie(@PathVariable Long id, @RequestBody Movie updatedMovie) {
+        try {
+            Optional<Movie> updated = movieService.updateMovie(id, updatedMovie);
+            return updated.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

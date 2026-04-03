@@ -21,8 +21,6 @@ public class ScreeningController {
         this.reservationService = reservationService;
     }
 
-    // ────────────────────── CRUD ──────────────────────────
-
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Screening screening) {
         try {
@@ -33,7 +31,9 @@ public class ScreeningController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Screening>> getAll()        { return ResponseEntity.ok(screeningService.getAllScreenings()); }
+    public ResponseEntity<List<Screening>> getAll() {
+        return ResponseEntity.ok(screeningService.getAllScreenings());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Screening> getById(@PathVariable Long id) {
@@ -42,7 +42,12 @@ public class ScreeningController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /** NOWY endpoint — usuwanie seansu */
+    /** Seanse dla konkretnego filmu */
+    @GetMapping("/movie/{movieId}")
+    public ResponseEntity<List<Screening>> getByMovie(@PathVariable Long movieId) {
+        return ResponseEntity.ok(screeningService.getByMovieId(movieId));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         return screeningService.deleteScreening(id)
@@ -50,9 +55,6 @@ public class ScreeningController {
                 : ResponseEntity.notFound().build();
     }
 
-    // ────────────────────── Dodatkowe operacje ──────────────
-
-    /** Dostępność miejsc */
     @GetMapping("/{id}/availability")
     public ResponseEntity<List<Integer>> availability(@PathVariable Long id) {
         return ResponseEntity.ok(reservationService.getAvailableSeats(id));

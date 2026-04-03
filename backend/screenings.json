@@ -1,0 +1,391 @@
+[ {
+  "id" : 1,
+  "movie" : {
+    "id" : 1,
+    "title" : "Oppenheimer",
+    "durationMinutes" : 180
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 3, 14, 0 ]
+}, {
+  "id" : 2,
+  "movie" : {
+    "id" : 2,
+    "title" : "Dune: Part Two",
+    "durationMinutes" : 166
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 3, 15, 0 ]
+}, {
+  "id" : 3,
+  "movie" : {
+    "id" : 3,
+    "title" : "Interstellar",
+    "durationMinutes" : 169
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 3, 18, 0 ]
+}, {
+  "id" : 4,
+  "movie" : {
+    "id" : 7,
+    "title" : "Inception",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 3, 18, 30 ]
+}, {
+  "id" : 5,
+  "movie" : {
+    "id" : 4,
+    "title" : "The Batman",
+    "durationMinutes" : 176
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 3, 21, 30 ]
+}, {
+  "id" : 6,
+  "movie" : {
+    "id" : 8,
+    "title" : "Joker: Folie à Deux",
+    "durationMinutes" : 138
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 3, 21, 30 ]
+}, {
+  "id" : 7,
+  "movie" : {
+    "id" : 5,
+    "title" : "Spider-Man: Across the Spider-Verse",
+    "durationMinutes" : 140
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 4, 12, 0 ]
+}, {
+  "id" : 8,
+  "movie" : {
+    "id" : 6,
+    "title" : "Gladiator II",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 4, 13, 0 ]
+}, {
+  "id" : 9,
+  "movie" : {
+    "id" : 1,
+    "title" : "Oppenheimer",
+    "durationMinutes" : 180
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 4, 15, 0 ]
+}, {
+  "id" : 10,
+  "movie" : {
+    "id" : 3,
+    "title" : "Interstellar",
+    "durationMinutes" : 169
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 4, 16, 0 ]
+}, {
+  "id" : 11,
+  "movie" : {
+    "id" : 2,
+    "title" : "Dune: Part Two",
+    "durationMinutes" : 166
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 4, 19, 0 ]
+}, {
+  "id" : 12,
+  "movie" : {
+    "id" : 4,
+    "title" : "The Batman",
+    "durationMinutes" : 176
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 4, 19, 0 ]
+}, {
+  "id" : 13,
+  "movie" : {
+    "id" : 7,
+    "title" : "Inception",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 4, 22, 0 ]
+}, {
+  "id" : 14,
+  "movie" : {
+    "id" : 8,
+    "title" : "Joker: Folie à Deux",
+    "durationMinutes" : 138
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 4, 22, 0 ]
+}, {
+  "id" : 15,
+  "movie" : {
+    "id" : 2,
+    "title" : "Dune: Part Two",
+    "durationMinutes" : 166
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 5, 14, 0 ]
+}, {
+  "id" : 16,
+  "movie" : {
+    "id" : 5,
+    "title" : "Spider-Man: Across the Spider-Verse",
+    "durationMinutes" : 140
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 5, 14, 30 ]
+}, {
+  "id" : 17,
+  "movie" : {
+    "id" : 6,
+    "title" : "Gladiator II",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 5, 17, 30 ]
+}, {
+  "id" : 18,
+  "movie" : {
+    "id" : 1,
+    "title" : "Oppenheimer",
+    "durationMinutes" : 180
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 5, 17, 30 ]
+}, {
+  "id" : 19,
+  "movie" : {
+    "id" : 3,
+    "title" : "Interstellar",
+    "durationMinutes" : 169
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 5, 21, 0 ]
+}, {
+  "id" : 20,
+  "movie" : {
+    "id" : 8,
+    "title" : "Joker: Folie à Deux",
+    "durationMinutes" : 138
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 5, 20, 30 ]
+}, {
+  "id" : 21,
+  "movie" : {
+    "id" : 4,
+    "title" : "The Batman",
+    "durationMinutes" : 176
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 6, 13, 0 ]
+}, {
+  "id" : 22,
+  "movie" : {
+    "id" : 7,
+    "title" : "Inception",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 6, 14, 0 ]
+}, {
+  "id" : 23,
+  "movie" : {
+    "id" : 1,
+    "title" : "Oppenheimer",
+    "durationMinutes" : 180
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 6, 17, 0 ]
+}, {
+  "id" : 24,
+  "movie" : {
+    "id" : 6,
+    "title" : "Gladiator II",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 6, 17, 0 ]
+}, {
+  "id" : 25,
+  "movie" : {
+    "id" : 5,
+    "title" : "Spider-Man: Across the Spider-Verse",
+    "durationMinutes" : 140
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 6, 21, 0 ]
+}, {
+  "id" : 26,
+  "movie" : {
+    "id" : 2,
+    "title" : "Dune: Part Two",
+    "durationMinutes" : 166
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 6, 20, 0 ]
+}, {
+  "id" : 27,
+  "movie" : {
+    "id" : 3,
+    "title" : "Interstellar",
+    "durationMinutes" : 169
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 7, 15, 0 ]
+}, {
+  "id" : 28,
+  "movie" : {
+    "id" : 8,
+    "title" : "Joker: Folie à Deux",
+    "durationMinutes" : 138
+  },
+  "room" : {
+    "id" : 1,
+    "name" : "Sala 1",
+    "seats" : 60
+  },
+  "dateTime" : [ 2026, 4, 7, 19, 0 ]
+}, {
+  "id" : 29,
+  "movie" : {
+    "id" : 7,
+    "title" : "Inception",
+    "durationMinutes" : 148
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 7, 15, 30 ]
+}, {
+  "id" : 30,
+  "movie" : {
+    "id" : 4,
+    "title" : "The Batman",
+    "durationMinutes" : 176
+  },
+  "room" : {
+    "id" : 2,
+    "name" : "VIP",
+    "seats" : 30
+  },
+  "dateTime" : [ 2026, 4, 7, 18, 30 ]
+} ]

@@ -1,0 +1,33 @@
+[ {
+  "id" : 1,
+  "title" : "Oppenheimer",
+  "durationMinutes" : 180
+}, {
+  "id" : 2,
+  "title" : "Dune: Part Two",
+  "durationMinutes" : 166
+}, {
+  "id" : 3,
+  "title" : "Interstellar",
+  "durationMinutes" : 169
+}, {
+  "id" : 4,
+  "title" : "The Batman",
+  "durationMinutes" : 176
+}, {
+  "id" : 5,
+  "title" : "Spider-Man: Across the Spider-Verse",
+  "durationMinutes" : 140
+}, {
+  "id" : 6,
+  "title" : "Gladiator II",
+  "durationMinutes" : 148
+}, {
+  "id" : 7,
+  "title" : "Inception",
+  "durationMinutes" : 148
+}, {
+  "id" : 8,
+  "title" : "Joker: Folie à Deux",
+  "durationMinutes" : 138
+} ]

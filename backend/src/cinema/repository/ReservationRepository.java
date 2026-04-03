@@ -7,6 +7,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +26,7 @@ public class ReservationRepository {
     }
 
     // -------------------- API --------------------
+
     public List<Reservation> findAll() {
         return new ArrayList<>(reservations);
     }
@@ -48,14 +51,16 @@ public class ReservationRepository {
     }
 
     // -------------------- I/O --------------------
+
     private void load() {
         if (!file.exists()) return;
         try {
-            reservations.addAll(mapper.readValue(file, new TypeReference<>() {}));
+            List<Reservation> loaded = mapper.readValue(file, new TypeReference<List<Reservation>>() {});
+            if (loaded != null) reservations.addAll(loaded);
         } catch (IOException e) {
             System.err.println("reservations.json uszkodzony → " + e.getMessage());
             File bad = new File("reservations_corrupt_" + System.currentTimeMillis() + ".json");
-            if (file.renameTo(bad)) System.err.println("Kopia: " + bad.getName());
+            if (file.renameTo(bad)) System.err.println("Kopia zapasowa: " + bad.getName());
         }
     }
 
@@ -63,9 +68,7 @@ public class ReservationRepository {
         try {
             File tmp = new File(file.getPath() + ".tmp");
             mapper.writerWithDefaultPrettyPrinter().writeValue(tmp, reservations);
-            if (!tmp.renameTo(file)) {
-                throw new IOException("Nie mogę podmienić pliku " + file.getName());
-            }
+            Files.move(tmp.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.err.println("Błąd zapisu rezerwacji: " + e.getMessage());
         }

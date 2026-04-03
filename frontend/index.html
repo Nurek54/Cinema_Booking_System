@@ -3,101 +3,270 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>System rezerwacji kinowych</title>
+  <title>LUMIÈRE — Kino Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/css/styles.css" />
   <link rel="icon" href="data:," />
 </head>
 <body>
-<header class="toolbar" aria-label="Główna nawigacja">
-  <button id="btn-films"      aria-label="Filmy">🎬 Filmy</button>
-  <button id="btn-screenings" aria-label="Seanse">📅 Seanse</button>
-  <button id="btn-reserve"    aria-label="Rezerwuj">🎟️ Rezerwuj</button>
-  <button id="btn-admin"      aria-label="Panel administracyjny">🛠️ Admin</button>
-</header>
 
-<main class="main-content">
-  <!-- ========== FILMY ========== -->
-  <section id="movies-section">
-    <h1>Filmy</h1>
-    <div id="movies" class="list-wrapper"></div>
+<!-- ====== AMBIENT BACKGROUND ====== -->
+<div class="ambient-bg">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grain-overlay"></div>
+</div>
 
-    <h2>Dodaj film</h2>
-    <form id="movie-form" class="form-inline">
-      <input id="title" placeholder="Tytuł" required />
-      <input id="duration" type="number" placeholder="Czas (min)" required />
-      <button>Dodaj</button>
-    </form>
-    <div id="add-status" class="status-box" role="status" aria-live="polite"></div>
-  </section>
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo" onclick="show('repertoire');return false;">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">LUMIÈRE</span>
+      <span class="logo-sub">CINEMA</span>
+    </a>
+    <div class="nav-links">
+      <button id="btn-repertoire" class="nav-btn active" data-view="repertoire">
+        <span class="nav-icon">⬡</span> Repertuar
+      </button>
+      <button id="btn-admin" class="nav-btn" data-view="admin">
+        <span class="nav-icon">⚙</span> Admin
+      </button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- ========== SEANSE ========== -->
-  <section id="screenings-section" hidden>
-    <h1>Seanse</h1>
-    <div id="screenings" class="list-wrapper"></div>
+<!-- ====== MOBILE MENU ====== -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-nav-btn" data-view="repertoire">Repertuar</button>
+  <button class="mobile-nav-btn" data-view="admin">Admin</button>
+</div>
 
-    <h2>Stwórz seans</h2>
-    <form id="screening-form" class="form-inline">
-      <select id="sc-movie" required aria-label="Film"></select>
-      <select id="sc-room"  required aria-label="Sala"></select>
-      <input  id="sc-date"  type="datetime-local" required aria-label="Data i godzina" />
-      <button>Utwórz</button>
-    </form>
-    <div id="sc-status" class="status-box" role="status" aria-live="polite"></div>
-  </section>
+<main class="main-content" id="main-content">
 
-  <!-- ========== REZERWACJA ========== -->
-  <section id="reserve-section" hidden>
-    <h1 id="reserve-heading">Rezerwacja</h1>
+  <!-- ========== 1. REPERTUAR ========== -->
+  <section id="repertoire-section" class="page-section page-section--no-pad">
 
-    <select id="res-screen" aria-label="Wybierz seans"></select>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero__film-strip hero__film-strip--left"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="hero__film-strip hero__film-strip--right"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
-    <div id="seat-grid" class="grid-wrapper" aria-label="Siatka miejsc"></div>
+      <div class="hero__spotlight"></div>
+      <div class="hero__spotlight hero__spotlight--2"></div>
 
-    <div id="legend" class="legend">
-      <span class="seat free"></span> wolne
-      <span class="seat taken"></span> zajęte
-      <span class="seat selected"></span> wybrane
+      <div class="hero__content">
+        <p class="hero__eyebrow"><span class="hero__diamond">◈</span> Lumière Cinema przedstawia</p>
+        <h1 class="hero__title">Doświadcz magii<br><em>wielkiego ekranu</em></h1>
+        <p class="hero__subtitle">Wybierz film, zarezerwuj najlepsze miejsca<br>i zanurz się w kinowych emocjach.</p>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-num" id="stat-movies">0</span>
+            <span class="hero__stat-label">filmów</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">2</span>
+            <span class="hero__stat-label">sale kinowe</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">90</span>
+            <span class="hero__stat-label">miejsc</span>
+          </div>
+        </div>
+        <a href="#movies-anchor" class="hero__scroll">
+          <span>Zobacz repertuar</span>
+          <span class="hero__scroll-arrow">↓</span>
+        </a>
+      </div>
     </div>
 
-    <div class="action-bar">
-      <button id="btn-book" disabled>Zarezerwuj</button>
-      <button id="btn-cancel" class="secondary">Anuluj</button>
-    </div>
-    <div id="res-status" class="status-box" role="status" aria-live="polite"></div>
-  </section>
-
-  <!-- ========== PANEL ADMINA ========== -->
-  <section id="admin-section" hidden>
-    <h1>Panel administracyjny</h1>
-
-    <nav class="subnav">
-      <button id="tab-reservations" class="tab active">Rezerwacje</button>
-      <button id="tab-logs"         class="tab">Logi</button>
-    </nav>
-
-    <!-- Rezerwacje -->
-    <div id="admin-reservations" class="tab-content"></div>
-
-    <!-- Logi -->
-    <div id="admin-logs" class="tab-content" hidden>
-      <pre id="logs-pre" style="white-space:pre-wrap"></pre>
+    <!-- REPERTUAR GRID -->
+    <div id="movies-anchor" class="repertoire-section-inner">
+      <div class="repertoire-header">
+        <div class="repertoire-header__line"></div>
+        <h2 class="repertoire-header__title">Teraz gramy</h2>
+        <div class="repertoire-header__line"></div>
+      </div>
+      <div id="movies-grid" class="movies-grid"></div>
     </div>
   </section>
 
-  <!-- ========== LOGOWANIE ADMINA ========== -->
-  <section id="admin-login-section" hidden>
-    <h2>Zaloguj się jako administrator</h2>
-    <form id="admin-login-form" class="form-inline">
-      <input id="admin-user" placeholder="Login" required />
-      <input id="admin-pass" type="password" placeholder="Hasło" required />
-      <button>Zaloguj</button>
-    </form>
-    <div id="admin-login-status" class="status-box"></div>
+  <!-- ========== 2. SZCZEGÓŁY FILMU + SEANSE ========== -->
+  <section id="movie-detail-section" class="page-section" hidden>
+    <button class="btn-back" id="btn-back-repertoire">← Powrót do repertuaru</button>
+
+    <div class="movie-hero" id="movie-hero"></div>
+
+    <div class="section-header" style="margin-top:2rem">
+      <h2 class="section-title">Dostępne seanse</h2>
+      <p class="section-subtitle">Wybierz termin i zarezerwuj miejsca</p>
+    </div>
+    <div id="movie-screenings" class="screenings-list"></div>
   </section>
+
+  <!-- ========== 3. REZERWACJA MIEJSC ========== -->
+  <section id="reserve-section" class="page-section" hidden>
+    <button class="btn-back" id="btn-back-movie">← Powrót do seansów</button>
+
+    <div class="section-header">
+      <h2 class="section-title" id="reserve-heading">Rezerwacja</h2>
+      <p class="section-subtitle" id="reserve-subtitle"></p>
+    </div>
+
+    <div class="reserve-layout">
+      <div class="reserve-sidebar" id="reserve-sidebar"></div>
+
+      <div class="reserve-main">
+        <div class="cinema-screen-wrap">
+          <div class="cinema-screen"></div>
+          <span class="screen-label">EKRAN</span>
+        </div>
+
+        <div id="seat-grid" class="seat-grid"></div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot free"></span> Wolne</div>
+          <div class="legend-item"><span class="legend-dot taken"></span> Zajęte</div>
+          <div class="legend-item"><span class="legend-dot selected"></span> Wybrane</div>
+        </div>
+
+        <div id="reserve-summary" class="reserve-summary" hidden>
+          <div class="summary-seats">Wybrane miejsca: <strong id="summary-seats-list">—</strong></div>
+          <div class="summary-count">Liczba biletów: <strong id="summary-count">0</strong></div>
+        </div>
+
+        <div class="action-bar">
+          <button id="btn-book" class="btn-primary btn-lg" disabled>
+            🎟️ Zarezerwuj
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. POTWIERDZENIE ========== -->
+  <section id="confirmation-section" class="page-section" hidden>
+    <div class="confirmation-card">
+      <div class="confirmation-icon">🎬</div>
+      <h2>Rezerwacja potwierdzona!</h2>
+      <div id="confirmation-details" class="confirmation-details"></div>
+      <button class="btn-primary" onclick="show('repertoire')">Wróć do repertuaru</button>
+    </div>
+  </section>
+
+  <!-- ========== 5. LOGOWANIE ADMINA ========== -->
+  <section id="admin-login-section" class="page-section" hidden>
+    <div class="login-card">
+      <div class="login-icon">🔐</div>
+      <h2>Panel administracyjny</h2>
+      <p>Zaloguj się, aby zarządzać kinem</p>
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-user">Login</label>
+          <input id="admin-user" placeholder="Nazwa użytkownika" required autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="admin-pass">Hasło</label>
+          <input id="admin-pass" type="password" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-primary btn-full">Zaloguj się</button>
+      </form>
+      <div id="admin-login-status" class="status-box"></div>
+    </div>
+  </section>
+
+  <!-- ========== 6. PANEL ADMINA ========== -->
+  <section id="admin-section" class="page-section" hidden>
+    <div class="section-header">
+      <h2 class="section-title">Panel administracyjny</h2>
+      <p class="section-subtitle">Zarządzaj kinem</p>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="admin-movies">Filmy</button>
+      <button class="admin-tab" data-tab="admin-screenings">Seanse</button>
+      <button class="admin-tab" data-tab="admin-reservations">Rezerwacje</button>
+      <button class="admin-tab" data-tab="admin-logs">Logi</button>
+    </div>
+
+    <!-- ADMIN: Filmy -->
+    <div id="admin-movies" class="admin-panel">
+      <div class="form-card" style="margin-bottom:1.5rem">
+        <div class="form-card-header">
+          <h3>Dodaj nowy film</h3>
+        </div>
+        <form id="movie-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="title">Tytuł filmu</label>
+              <input id="title" placeholder="np. Oppenheimer" required />
+            </div>
+            <div class="form-group">
+              <label for="duration">Czas trwania (min)</label>
+              <input id="duration" type="number" min="1" placeholder="120" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary"><span class="btn-icon">+</span> Dodaj film</button>
+        </form>
+      </div>
+      <div id="admin-movies-list"></div>
+    </div>
+
+    <!-- ADMIN: Seanse -->
+    <div id="admin-screenings" class="admin-panel" hidden>
+      <div class="form-card" style="margin-bottom:1.5rem">
+        <div class="form-card-header">
+          <h3>Zaplanuj nowy seans</h3>
+        </div>
+        <form id="screening-form">
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label for="sc-movie">Film</label>
+              <select id="sc-movie" required></select>
+            </div>
+            <div class="form-group">
+              <label for="sc-room">Sala</label>
+              <select id="sc-room" required></select>
+            </div>
+            <div class="form-group">
+              <label for="sc-date">Data i godzina</label>
+              <input id="sc-date" type="datetime-local" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary"><span class="btn-icon">◎</span> Utwórz seans</button>
+        </form>
+      </div>
+      <div id="admin-screenings-list"></div>
+    </div>
+
+    <!-- ADMIN: Rezerwacje -->
+    <div id="admin-reservations" class="admin-panel" hidden>
+      <div id="admin-reservations-list"></div>
+    </div>
+
+    <!-- ADMIN: Logi -->
+    <div id="admin-logs" class="admin-panel" hidden>
+      <div class="logs-container">
+        <pre id="logs-pre">Ładowanie...</pre>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-  <p>&copy; 2025 KinoApp</p>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="logo-icon">◈</span> LUMIÈRE CINEMA</div>
+    <p class="footer-copy">&copy; 2026 Lumière Cinema. Wszystkie prawa zastrzeżone.</p>
+  </div>
 </footer>
 
 <script type="module" src="/src/js/app.js"></script>
