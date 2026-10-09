@@ -9,12 +9,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=openjdk&logoColor=white" alt="Java 17+" />
   <img src="https://img.shields.io/badge/Spring_Boot-3.2-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Spring Boot 3.2" />
-  <img src="https://img.shields.io/badge/Maven-wrapper-C71A36?style=flat-square&logo=apachemaven&logoColor=white" alt="Maven Wrapper" />
-  <img src="https://img.shields.io/badge/JavaScript-ES_Modules-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white" alt="Maven" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript ES6" />
   <img src="https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 6" />
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/Jackson-JSON-2F2F2F?style=flat-square&logo=json&logoColor=white" alt="Jackson JSON" />
+  <img src="https://img.shields.io/badge/Jackson-2F2F2F?style=flat-square&logo=json&logoColor=white" alt="Jackson" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-F59E0B?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -233,31 +233,27 @@ The customer only sees the movie grid, the screening list and the seat picker. A
 sequenceDiagram
     autonumber
     actor U as Customer
-    participant FE as app.js (browser)
-    participant V as Vite dev server :5178
-    participant RC as ReservationController
-    participant RS as ReservationService
-    participant SR as ScreeningRepository
-    participant RR as ReservationRepository
+    participant FE as app.js
+    participant C as ReservationController
+    participant S as ReservationService
+    participant R as Repositories
     participant L as LoggingService
 
-    U->>FE: click seats 47, 48 → "Zarezerwuj"
-    FE->>V: POST /api/reservations/19  [47, 48]
-    V->>RC: proxy /api → :8080
-    RC->>RS: createReservation(19, [47, 48])
-    RS->>SR: findById(19)
-    SR-->>RS: Screening (Interstellar, Sala 1, 60 seats)
-    RS->>RS: range 1..60 · no duplicates · not taken
-    alt any check fails
-        RS-->>RC: IllegalArgumentException / IllegalStateException
-        RC-->>FE: 400 + Polish message
+    U->>FE: seats 47, 48 → "Zarezerwuj"
+    FE->>C: POST /api/reservations/19 [47, 48]<br/>(Vite proxy → :8080)
+    C->>S: createReservation(19, [47, 48])
+    S->>R: find screening #35;19
+    R-->>S: Interstellar · Sala 1 · 60 seats
+    S->>S: range 1..60 · no duplicates · not taken
+    alt a check fails
+        S-->>C: exception with Polish message
+        C-->>FE: 400 "Miejsca już zajęte: [25]"
         FE-->>U: red toast
     else all good
-        RS->>RR: save(reservation)
-        RR->>RR: write reservations.json.tmp → move
-        RS->>L: "Rezerwacja #12 na seans #19, miejsca: [47, 48]"
-        RC-->>FE: 200 Reservation #12
-        FE-->>U: confirmation card + toast
+        S->>R: save → reservations.json (tmp + move)
+        S->>L: "Rezerwacja #35;12 na seans #35;19 ..."
+        C-->>FE: 200 Reservation #35;12
+        FE-->>U: confirmation card
     end
 ```
 
@@ -355,24 +351,24 @@ Seats are numbered `1..room.seats`. A screening "occupies" its room from `dateTi
 Cinema_Booking_System/
 ├── backend/
 │   ├── pom.xml
-│   ├── mvnw / mvnw.cmd                 # Maven Wrapper
+│   ├── mvnw / mvnw.cmd             # Maven Wrapper
 │   └── src/
 │       ├── cinema/
 │       │   ├── CinemaApplication.java
-│       │   ├── CorsConfig.java         # CORS for localhost:5178 / 5179
-│       │   ├── controller/             # Movie, Screening, Reservation, Room, Login (+ /api/logs), Test
-│       │   ├── model/                  # Movie, Room, Screening, Reservation
-│       │   ├── repository/             # JSON-file repositories, in-memory RoomRepository, DataSeeder
-│       │   └── service/                # business rules, validation, conflict detection, LoggingService
+│       │   ├── CorsConfig.java     # CORS for the Vite dev server
+│       │   ├── controller/         # REST endpoints (/api/...)
+│       │   ├── model/              # Movie, Room, Screening, Reservation
+│       │   ├── repository/         # JSON-file repos, DataSeeder
+│       │   └── service/            # validation, conflicts, logging
 │       └── resources/
-│           └── application.properties  # port 8080, logging
+│           └── application.properties
 ├── frontend/
-│   ├── index.html                      # all views (repertoire, screenings, seats, confirmation, admin)
-│   ├── vite.config.js                  # port 5178, proxy /api → http://localhost:8080
+│   ├── index.html                  # all views in one page
+│   ├── vite.config.js              # port 5178, /api proxy
 │   └── src/
-│       ├── css/styles.css              # "Lumière" theme
-│       └── js/app.js                   # navigation, API calls, seat map, admin panel
-├── docs/                               # README assets: animated SVGs, GIFs, screenshots, icons
+│       ├── css/styles.css          # "Lumière" theme
+│       └── js/app.js               # views, API calls, seat map, admin
+├── docs/                           # README images, GIFs, SVGs
 ├── LICENSE
 └── README.md
 ```
